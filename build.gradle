@@ -4,7 +4,7 @@ plugins {
     id("io.github.goooler.shadow") version "8.1.8"
 }
 
-group = 'dev.qixils'
+group = 'dev.muno'
 version = '1.0.0'
 def mcVersion = '1.21.7'
 
@@ -58,7 +58,7 @@ processResources {
 }
 
 shadowJar {
-    relocate 'cloud.commandframework', 'dev.qixils.fahare.shadow.cloud'
+    relocate 'cloud.commandframework', 'dev.muno.nonsensehardcore.shadow.cloud'
     minimize()
     dependencies {
         exclude(dependency('net.kyori:'))

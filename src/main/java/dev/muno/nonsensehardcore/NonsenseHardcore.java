@@ -48,6 +48,7 @@ import cloud.commandframework.paper.PaperCommandManager;
 import static net.kyori.adventure.text.Component.text;
 import static net.kyori.adventure.text.Component.translatable;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.translation.GlobalTranslator;
 import net.kyori.adventure.translation.TranslationRegistry;
 import net.kyori.adventure.util.UTF8ResourceBundleControl;
@@ -69,6 +70,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
     private Path worldContainer;
     private @Nullable Path backupContainer;
     private boolean resetting = false;
+    private String deathMessage = "";
     
     // config
     private boolean backup = true;
@@ -351,7 +353,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
         if (!autoReset)
             return;
         if (anyDeath && death) {
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kick @a " + who.getName() + " died :(");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kick @a " + deathMessage);
             reset();
             return;
         }
@@ -362,7 +364,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
             if (isAlive(player.getUniqueId()))
                 return;
         }
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kick @a Everybody died :(");
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "kick @a " + deathMessage);
         reset();
     }
 
@@ -375,6 +377,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskLater(this, () -> {
             resetCheck(true, player);
         }, 1);
+        deathMessage = PlainTextComponentSerializer.plainText().serialize(event.deathMessage());
     }
     
     private static void deleteDirectoryRecursively(Path path) throws IOException {
