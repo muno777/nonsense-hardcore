@@ -1,8 +1,8 @@
-name: Fahare
-description: Automatically resets your hardcore world when all online players die
+name: NonsenseHardcore
+description: Hardcore Mode but it downloads random datapacks from Modrinth
 version: '${version}'
-main: dev.qixils.fahare.Fahare
-api-version: '1.19'
+main: dev.muno.nonsensehardcore.NonsenseHardcore
+api-version: '1.21.7'
 authors:
-  - qixils
-website: https://github.com/qixils/Fahare
+  - muno
+website: https://github.com/muno777/nonsense-hardcore

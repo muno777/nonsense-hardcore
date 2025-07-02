@@ -1,4 +1,4 @@
-package dev.qixils.fahare;
+package dev.muno.nonsensehardcore;
 
 import java.lang.reflect.Method;
 
@@ -56,7 +56,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static net.kyori.adventure.text.Component.text;
 import static net.kyori.adventure.text.Component.translatable;
 
-public final class Fahare extends JavaPlugin implements Listener {
+public final class NonsenseHardcore extends JavaPlugin implements Listener {
 
     private class AddedDatapack {
         String name;
@@ -106,7 +106,7 @@ public final class Fahare extends JavaPlugin implements Listener {
 
         // Create backup folder
         worldContainer = Bukkit.getWorldContainer().toPath();
-        backupContainer = worldContainer.resolve("fahare-backups");
+        backupContainer = worldContainer.resolve("nonsensehardcore-backups");
 
         if (!Files.exists(backupContainer)) {
             try {
@@ -121,7 +121,7 @@ public final class Fahare extends JavaPlugin implements Listener {
         TranslationRegistry registry = TranslationRegistry.create(new NamespacedKey(this, "translations"));
         registry.defaultLocale(Locale.US);
         for (Locale locale : List.of(Locale.US)) {
-            ResourceBundle bundle = ResourceBundle.getBundle("Fahare", locale, UTF8ResourceBundleControl.get());
+            ResourceBundle bundle = ResourceBundle.getBundle("NonsenseHardcore", locale, UTF8ResourceBundleControl.get());
             registry.registerAll(locale, bundle, false);
         }
         GlobalTranslator.translator().addSource(registry);
@@ -137,10 +137,10 @@ public final class Fahare extends JavaPlugin implements Listener {
             }
 
             // Commands
-            Command.Builder<CommandSender> cmd = commandManager.commandBuilder("fahare");
+            Command.Builder<CommandSender> cmd = commandManager.commandBuilder("nonsensehardcore");
             commandManager.command(cmd
                     .literal("reset")
-                    .permission("fahare.reset")
+                    .permission("nonsensehardcore.reset")
                     .handler(c -> {
                         c.getSender().sendMessage(translatable("fhr.chat.resetting"));
                         reset();
@@ -168,7 +168,7 @@ public final class Fahare extends JavaPlugin implements Listener {
         anyDeath = config.getBoolean("any-death", anyDeath);
         autoRestart = config.getBoolean("auto-restart", autoRestart);
         lives = Math.max(1, config.getInt("lives", lives));
-        datapackCount = config.getInt("datapackCount", datapackCount);
+        datapackCount = config.getInt("datapack-count", datapackCount);
         for (Map<?, ?> entry : config.getMapList("added-datapacks")) {
             addedDatapacks.add(new AddedDatapack(
                 (String) entry.get("name"),
