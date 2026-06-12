@@ -1,12 +1,13 @@
 plugins {
     id 'java'
     id 'xyz.jpenilla.run-paper' version '2.3.0'
-    id("io.github.goooler.shadow") version "8.1.8"
+    id("com.gradleup.shadow") version "9.4.2"
+    // id("io.github.goooler.shadow") version "8.1.8"
 }
 
 group = 'dev.muno'
-version = '1.0.0'
-def mcVersion = '1.21.7'
+version = '1.0.1'
+def mcVersion = '26.1.2'
 
 repositories {
     mavenCentral()
@@ -21,12 +22,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.6-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.1.2.build.+")
     implementation "cloud.commandframework:cloud-paper:1.8.4" // TODO: maybe move away from cloud to shed a megabyte of dependencies
     implementation "cloud.commandframework:cloud-minecraft-extras:1.8.4"
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion

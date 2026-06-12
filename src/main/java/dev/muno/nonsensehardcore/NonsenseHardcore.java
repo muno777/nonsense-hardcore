@@ -221,7 +221,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
             HttpClient client = HttpClient.newHttpClient();
             
             // Build the facets as a JSON string
-            String facetsJson = "[[\"versions:1.21.7\"],[\"categories:datapack\"]]";
+            String facetsJson = "[[\"versions:26.1.2\"],[\"categories:datapack\"]]";
             String encodedFacets = URLEncoder.encode(facetsJson, StandardCharsets.UTF_8);
 
             // Build the full URL with facets
@@ -276,7 +276,7 @@ public final class NonsenseHardcore extends JavaPlugin implements Listener {
                 url = String.format("https://api.modrinth.com/v2/project/%s/version?loaders=%s&game_versions=%s",
                         datapackID,
                         URLEncoder.encode("[\"datapack\"]", StandardCharsets.UTF_8),
-                        URLEncoder.encode("[\"1.21.7\"]", StandardCharsets.UTF_8)
+                        URLEncoder.encode("[\"26.1.2\"]", StandardCharsets.UTF_8)
                 );
 
                 request = HttpRequest.newBuilder()
